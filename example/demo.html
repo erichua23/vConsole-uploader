@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>vConsole-resources</title>
+  <title>vConsole-logUploader</title>
   <link href="./lib/weui.min.css" rel="stylesheet"/>
   <link href="./lib/demo.css" rel="stylesheet"/>
 
@@ -13,14 +13,20 @@
   <script src="./lib/vconsole.min.js"></script>
   <script src="../dist/vconsole-loguploader.min.js"></script>
   <script>
-    vConsole.pluginList['uploader'].config({postURL: 'http://localhost:3000/postLog'});
+    vConsole.pluginList['uploader'].config({postURL: 'http://120.25.172.7:3000/postLog'});
+
+    // output some log for demo
+    for (var i = 0; i < 100; i++) {
+      console.log('some log ' + new Date().getTime() + ' ' + i);
+      localStorage.setItem('key' + i, "value" + i);
+    }
   </script>
 </head>
 <body ontouchstart>
   <div class="page">
-    <h1 class="page_title">vConsole-resouces</h1>
+    <h1 class="page_title">vConsole-logUploader</h1>
     <div class="weui_text_area">
-      <p class="weui_msg_desc">See "Resources" tab in vConsole.</p>
+      <p class="weui_msg_desc">See "LogUploader" tab in vConsole.</p>
     </div>
   </div>
 </body>

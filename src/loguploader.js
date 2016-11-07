@@ -104,7 +104,7 @@ class VConsoleLogUploadTab extends vConsole.VConsolePlugin {
 	  contentType: 'application/json',
 	  success: function(resp) {
 		let $log = $.one('.vc-log-id');
-		$log.innerHTML = $.render('<div>Your log is uploaded</div><div>Log URL: <span >{{logURL}}</span></div>', { logURL: resp }, true);
+		$log.innerHTML = $.render('<div>Your log is uploaded</div><div>Log URL: <span ><a>{{logURL}}</a></span></div>', { logURL: that.logPostURL.replace('postLog', '') + 'uploaded/' + resp }, true);
 	  },
 	  error: function(resp) {
         let $log = $.one('.vc-log-id');
@@ -144,10 +144,10 @@ class VConsoleLogUploadTab extends vConsole.VConsolePlugin {
   	for (var i = 0; i < localStorage.length; i++) {
   		let name = localStorage.key(i),
   			value = localStorage.getItem(name);
-  		list.push({
+  		list.push(JSON.stringify({
   			name: name,
   			value: value
-  		});
+  		}));
   	}
   	return list;
   }

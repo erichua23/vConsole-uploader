@@ -1,4 +1,0 @@
-{"WBAppId":"00000001","WBAppVersion":"1.7.1","h5AppInfos":[{"appEntry":"","packageName":"com.webank.wemoney","signature":"87f39cc975f0ef64fdca76711dd52cb9","versionCode":"251"}],"os":"ios"}
-{"WBAppId":"00000001","WBAppVersion":"1.7.1","h5AppInfos":[{"appEntry":"","packageName":"com.webank.wemoney","signature":"87f39cc975f0ef64fdca76711dd52cb9","versionCode":"251"}],"os":"ios"}
-{"WBAppId":"00000001","WBAppVersion":"1.7.1","h5AppInfos":[{"appEntry":"","packageName":"com.webank.wemoney","signature":"87f39cc975f0ef64fdca76711dd52cb9","versionCode":"251"}],"os":"ios"}
-{"WBAppId":"00000001","WBAppVersion":"1.7.1","h5AppInfos":[{"appEntry":"","packageName":"com.webank.wemoney","signature":"87f39cc975f0ef64fdca76711dd52cb9","versionCode":"251"}],"os":"ios"}
