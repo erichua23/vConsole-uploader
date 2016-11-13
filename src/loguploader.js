@@ -19,15 +19,6 @@ class VConsoleLogUploadTab extends vConsole.VConsolePlugin {
 
   onRenderTab(callback) {
     callback(this.$tabbox);
-
-    var that = this;
-
-	/**
-    let $postURL = $.one('.vc-post-url');
-    $postURL.innerHTML = $.render('<span>{{postURL}}</span>', {
-      postURL: that.postURL
-    }, true);
-    */
   }
 
   config(cfg = {}) {
@@ -59,9 +50,6 @@ class VConsoleLogUploadTab extends vConsole.VConsolePlugin {
   uploadLog() {
     var logList = this.getLogList();
     this.upload(logList);
-  } uploadCookie() { var cookieList = this.getCookieList();
-
-    this.upload(cookieList);
   }
 
   uploadLocalStorage() {
@@ -82,7 +70,7 @@ class VConsoleLogUploadTab extends vConsole.VConsolePlugin {
   upload(data) {
     let that = this;
     var postData = {
-      deviceInfo: { // TODO Add Device Info for DEBUG
+      deviceInfo: { // TODO Add Device Info
       },
       logList: data ? data : {}
     };
@@ -108,7 +96,7 @@ class VConsoleLogUploadTab extends vConsole.VConsolePlugin {
 	  },
 	  error: function(resp) {
         let $log = $.one('.vc-log-id');
-        $log.innerHTML = $.render('<div>日志上传失败</div>', {});
+        $log.innerHTML = $.render('<div>Log upload failed</div>', {});
       }
     });
   }

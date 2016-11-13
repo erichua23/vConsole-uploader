@@ -1,17 +1,17 @@
-var express = require('express')
-var fs = require('fs')
+var express = require('express');
+var fs = require('fs');
 var cors = require('cors');
 
-var app = express()
+var app = express();
 app.use(cors());
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json({limit: '50mb'}) );
 
 var uploadFilePath = './server/uploadedLogFiles/';
-app.use('/uploaded', express.static('./server/uploadedLogFiles'))
-app.use(express.static('./'))
-app.use('/example', express.static('./example'))
+app.use('/uploaded', express.static('./server/uploadedLogFiles'));
+app.use(express.static('./'));
+app.use('/example', express.static('./example'));
 
 // respond with "hello world" when a GET request is made to the homepage
 app.post('/postLog', function (req, res) {
@@ -31,13 +31,13 @@ app.post('/postLog', function (req, res) {
 
   // TODO return some tips
   res.end("Bad post format", 400);
-  
+
   function getFileName() {
 	return new Date().getTime();
   }
-})
+});
 
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
-})
+});
