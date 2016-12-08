@@ -9,7 +9,7 @@ vConsole-uploader
 node server/app.js
 ```
 
-## 第二步: 配置日子上传的 Server
+## 第二步: 配置日志上传的 Server
 
 ``` js
 <script src="./lib/vconsole.min.js"></script>
