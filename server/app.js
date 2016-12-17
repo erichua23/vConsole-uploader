@@ -13,6 +13,15 @@ app.use('/uploaded', express.static('./server/uploadedLogFiles'));
 app.use(express.static('./'));
 app.use('/example', express.static('./example'));
 
+app.get('/app', function (req, res) {
+  console.log(req);
+  var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  console.log(res);
+  console.log('ip: ' + ip);
+  console.log('req.connection.remoteAddress: ' + req.connection.remoteAddress);
+  
+});
+
 // respond with "hello world" when a GET request is made to the homepage
 app.post('/postLog', function (req, res) {
   console.log(req.body);
