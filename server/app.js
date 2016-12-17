@@ -1,29 +1,42 @@
 var express = require('express');
 var fs = require('fs');
 var cors = require('cors');
+var ipfilter = require('express-ipfilter').IpFilter;
+var bodyParser = require('body-parser');
 
 var app = express();
+
+// TODO add ip filter here
+app.use(ipfilter([], {mode: 'allow'})); 
+// TODO 做成接收参数 
+var config = {
+  ipWhiteList: [],
+  ipBlackList: [],
+  fileuploadPath: './server/uploadedLogFiles/', // TODO abs path is batter
+  bodyLimit: '50mb'
+};
+
+var uploadFilePath = config.fileuploadPath;
+
 app.use(cors());
+app.use(bodyParser.json({
+  limit: config.bodyLimit 
+}));
 
-var bodyParser = require('body-parser');
-app.use(bodyParser.json({limit: '50mb'}) );
-
-var uploadFilePath = './server/uploadedLogFiles/';
-app.use('/uploaded', express.static('./server/uploadedLogFiles'));
 app.use(express.static('./'));
 app.use('/example', express.static('./example'));
 
-app.get('/app', function (req, res) {
-  console.log(req);
-  var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-  console.log(res);
-  console.log('ip: ' + ip);
-  console.log('req.connection.remoteAddress: ' + req.connection.remoteAddress);
-  
+app.get('/logs', function (req, res) {
+  console.log(req.params.id);
+  res.end('id list: ' + req.params.id, 200);
 });
 
-// respond with "hello world" when a GET request is made to the homepage
-app.post('/postLog', function (req, res) {
+app.get('/log/:id', function (req, res) {
+  console.log(req.params.id);
+  res.end('id: ' + req.params.id, 200);
+});
+
+app.post('/log', function (req, res) {
   console.log(req.body);
   var body = '';
   var fileName = '' + getFileName();
@@ -45,7 +58,6 @@ app.post('/postLog', function (req, res) {
 	return new Date().getTime();
   }
 });
-
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
