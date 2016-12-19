@@ -6,6 +6,11 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
+var config = require('./config');
+app.configure(function() {
+  app.set('config', config); 
+}
+
 // TODO add ip filter here
 app.use(ipfilter([], {mode: 'allow'})); 
 // TODO 做成接收参数 
