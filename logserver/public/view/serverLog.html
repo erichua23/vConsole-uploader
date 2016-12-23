@@ -1,0 +1,47 @@
+<div layout="column" ng-cloak="" scroll layout-fill="">
+
+    <md-toolbar>
+        <div  layout="row" class="md-toolbar-tools">
+            <h1 flex="20" class="md-toolbar-tools">HJApp日志查询系统</h1>
+            <div flex></div>
+            <!-- <md-datepicker ng-model="myDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker> -->
+            <!-- <div flex></div> -->
+
+            <md-input-container flex="10" class="md-margin" style="background-color: rgb(255,255,255); color: rgba(0,0,0,0.87);">
+              <md-select ng-model="data.env" placeholder="选择环境">
+                <md-option ng-value="env" ng-repeat="env in data.envList">{{env}}环境</md-option>
+              </md-select>
+            </md-input-container>
+
+            <md-input-container flex="20" md-no-float class="md-margin md-block" style="background-color: rgb(255,255,255); color: rgba(0,0,0,0.87);">
+                <input ng-model="data.keyword" autofocus tabindex="0" placeholder="输入 ecif/流水号 查询日志" ng-keyup="$event.keyCode == 13 && func.onClickSearch();"/>
+            </md-input-container>
+
+            <md-button class="md-raised" ng-click="func.onClickSearch()">
+                查询
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-content flex layout="column" layout-fill>
+        <md-progress-linear md-mode="query" ng-disabled="!data.showLoading"></md-progress-linear>
+        <md-tabs layout-fill ng-if="data.logList">
+          <md-tab label="{{data.env + dcnNo + '(' + (logs ? logs.length:0) + '条日志)'}}" ng-repeat="(dcnNo, logs) in data.logList" scroll>
+            <md-content class="md-padding">
+                <!-- <h1 class="md-display-2">Tab One</h1> -->
+                <table class="table" layout="column">
+                    <tr layout="row" layout-fill="">
+                        <th flex="15">时间</th>
+                        <!--<th flex="10">设备ID</th>-->
+                        <th flex="85" style="word-wrap: break-word;">日志内容</th>
+                    </tr>
+                    <tr layout="row" layout-fill=""
+                        ng-repeat="item in logs | orderBy:'datetime' track by $index">
+                        <td flex="15" ng-class="{highlight: item.isError}" ng-bind="item.datetime"></td>
+                        <td flex="85" ng-class="{highlight: item.isError}" style="word-wrap: break-word;"><span ng-if="item.errorLabel" ng-bind="item.errorLabel" class="error-label"></span><span ng-bind="item.body"></span></td>
+                    </tr>
+                </table>
+            </md-content>
+          </md-tab>
+        </md-tabs>
+    </md-content>
+</div>
