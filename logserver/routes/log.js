@@ -16,12 +16,12 @@ function getDateString() {
 var uploadFileDir = "/Users/erichua/tmp/" + getDateString() + '/';
 
 router.get('/:id', function(req, res, next) {
-  var logId = req.params.id
+  var logId = req.params.id;
   var logFilePath = uploadFileDir + logId;
   fs.readFile(logFilePath, (err, data) => {
     if (err) {
       if (err.code === "ENOENT") {
-	  	res.status(404).json('logId ' + logId + ' does not exist');
+  	  	res.status(404).json('logId ' + logId + ' does not exist');
         return;
       } else {
         throw err;
